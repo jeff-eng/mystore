@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/Product';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -9,25 +10,15 @@ import { Product } from '../models/Product';
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
 
-  constructor() { }
+  // Inject the Product Service as a dependency
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-      this.products = [
-        {
-          id: 0,
-          name: 'iPhone 14 Pro Max',
-          price: 1099.99,
-          url: 'https://via.placeholder.com/150',
-          description: 'The best iPhone yet'
-        },
-        {
-          id: 0,
-          name: 'iPad Pro 11-inch M2',
-          price: 799.99,
-          url: 'https://via.placeholder.com/150',
-          description: 'Empowers your creative engine'
-        }
-      ];
+    // Subscribe to the observable returned from Product Service  
+    this.productService.getProducts().subscribe(data => {
+      this.products = data;
+
+    });
   }
   
 }
