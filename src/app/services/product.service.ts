@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/Product';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+// import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,4 @@ export class ProductService {
     // this automatically maps returned response to an array of Products
     return this.http.get<Product[]>(this.productDataURL);
   }
-  
 }
