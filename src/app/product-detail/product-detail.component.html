@@ -1,9 +1,12 @@
+<app-nav-header></app-nav-header>
 <!-- Product image -->
-<img src="" alt="">
+<img src="{{ product?.url }}" alt="{{ product?.name }} image">
 <!-- Product Name -->
-<p></p>
+<p>{{ product?.name }}</p>
 <!-- Product Price -->
-<p></p>
+<p>${{ product?.price }}</p>
+<!-- Product Description -->
+<p>{{ product?.description }}</p>
 
 <!-- Quantity selector -->
 <form action="">
@@ -20,6 +23,3 @@
         <option value="10">10</option>
     </select>
 </form>
-
-<!-- Product Description -->
-<p></p>
