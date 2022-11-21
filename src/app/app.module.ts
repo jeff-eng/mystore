@@ -10,6 +10,7 @@ import { ProductThumbnailComponent } from './product-thumbnail/product-thumbnail
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ProductThumbnailComponent,
     ProductDetailComponent,
     NavHeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
