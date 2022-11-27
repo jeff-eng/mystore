@@ -8,18 +8,11 @@
 <!-- Product Description -->
 <p>{{ product?.description }}</p>
 
+<p>Quantity selected: {{ selectedQty }}</p>
 <!-- Quantity selector -->
-<form action="">
-    <select name="quantity" id="">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
+<form (ngSubmit)="addToCart()">
+    <select [(ngModel)]="selectedQty" name="quantity" id="">
+        <option *ngFor="let option of ngOptions" [selected]="option === ngDefaultQty" [ngValue]="option">{{ option }}</option>
     </select>
+    <input type="submit" value="Add To Cart">
 </form>

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { throwError } from 'rxjs';
 import { Product } from '../models/Product';
 import { ProductService } from '../services/product.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,8 +12,16 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductDetailComponent implements OnInit {
   product?: Product;
+  selectedQty: number;
+  // Option select dropdown variables
+  ngOptions: Number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  ngDefaultQty: Number = 1;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) {}
+  constructor(private productService: ProductService, 
+              private cartService: CartService,
+              private route: ActivatedRoute) {
+                this.selectedQty = 1;
+              }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -28,4 +37,9 @@ export class ProductDetailComponent implements OnInit {
     });
   }
   
+  addToCart(): void {
+    console.log(typeof(this.selectedQty));
+    console.log(this.product);
+  }
+
 }

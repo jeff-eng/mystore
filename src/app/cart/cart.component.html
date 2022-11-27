@@ -1,1 +1,11 @@
-<p>cart works!</p>
+<app-nav-header></app-nav-header>
+
+<h1>Your Cart</h1>
+<!-- Use ngIf if the list has items, display items, otherwise display message that cart has no items -->
+<ul>
+    <li></li>
+</ul>
+
+<h2>Order Summary</h2>
+<p>Total: {{ total | currency }}</p>
+<button routerLink="/products">Checkout</button>
