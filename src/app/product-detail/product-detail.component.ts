@@ -11,7 +11,7 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-  product?: Product;
+  product: Product | undefined;
   selectedQty: number;
   // Option select dropdown variables
   ngOptions: Number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -38,8 +38,7 @@ export class ProductDetailComponent implements OnInit {
   }
   
   addToCart(): void {
-    console.log(typeof(this.selectedQty));
-    console.log(this.product);
+    this.cartService.addToCartContents(this.product, this.selectedQty);
   }
 
 }
