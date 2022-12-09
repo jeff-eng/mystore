@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
   total;
 
   constructor(private cartService: CartService) { 
-    this.total = 0;
+    this.total = this.cartService.cartTotal;
   }
 
   ngOnInit(): void {
@@ -28,15 +28,14 @@ export class CartComponent implements OnInit {
   onRemove(item: CartItem): void {
     // Remove item from the Cart Service and update cartItems property with returned array
     const returnedArray = this.cartService.removeFromCartContents(item);
-    console.log(returnedArray);
     this.cartItems = returnedArray;
-    // this.cartItems = this.cartService.removeFromCartContents(item);
     window.alert(`Removed item ${item.product?.name} from cart!`);
     
   }
 
   onQtyUpdate(item: CartItem, qty: number) {
     this.cartItems = this.cartService.updateCartContents(item, qty);
+    this.total = this.cartService.cartTotal;
   }
 
 }

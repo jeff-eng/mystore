@@ -10,8 +10,6 @@
 
 <p>Quantity selected: {{ selectedQty }}</p>
 
-<!-- <button type="button" (click)="addToCart(product)">Add To Cart</button> -->
-
 <!-- Quantity selector -->
 <form (ngSubmit)="addToCart()">
     <select [(ngModel)]="selectedQty" name="quantity" id="">
