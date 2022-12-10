@@ -13,6 +13,7 @@ import { NavHeaderComponent } from './nav-header/nav-header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CartItemComponent } from './cart-item/cart-item.component';
     NavHeaderComponent,
     PageNotFoundComponent,
     CartComponent,
-    CartItemComponent
+    CartItemComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
