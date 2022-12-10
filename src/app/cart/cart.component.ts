@@ -29,6 +29,7 @@ export class CartComponent implements OnInit {
     // Remove item from the Cart Service and update cartItems property with returned array
     const returnedArray = this.cartService.removeFromCartContents(item);
     this.cartItems = returnedArray;
+    this.total = this.cartService.cartTotal;
     window.alert(`Removed item ${item.product?.name} from cart!`);
     
   }
