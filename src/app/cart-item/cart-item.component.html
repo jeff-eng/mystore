@@ -1,0 +1,9 @@
+<p>{{ cartItem.product?.name }}</p>
+<p>{{ cartItem.product?.price | currency }}</p>
+<p>{{ cartItem.quantity }}</p>
+<select #qty name="cartitem-qty" (change)="qtyUpdated(qty.value)">
+    <option *ngFor="let option of ngOptions" [selected]="option === cartItem.quantity" [ngValue]="option">{{ option }}</option>
+</select>
+<button (click)="removed.emit(cartItem)">Remove</button>
+<br>
+

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +11,8 @@ import { ProductThumbnailComponent } from './product-thumbnail/product-thumbnail
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CartComponent } from './cart/cart.component';
+import { CartItemComponent } from './cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +21,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ProductThumbnailComponent,
     ProductDetailComponent,
     NavHeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CartComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
