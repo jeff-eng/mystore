@@ -12,4 +12,5 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Method to handle click event when user confirms order placement
 }

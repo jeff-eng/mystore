@@ -18,11 +18,6 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartContents();
   }
-
-  onCheckout(): void {
-    // Dummy method to check out
-    alert('Checking out');
-  }
   
   // Remove
   onRemove(item: CartItem): void {
