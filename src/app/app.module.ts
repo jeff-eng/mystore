@@ -14,8 +14,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { CustomerInfoComponent } from './checkout/customer-info/customer-info.component';
-import { PaymentInfoComponent } from './checkout/payment-info/payment-info.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +26,6 @@ import { PaymentInfoComponent } from './checkout/payment-info/payment-info.compo
     CartComponent,
     CartItemComponent,
     CheckoutComponent,
-    CustomerInfoComponent,
-    PaymentInfoComponent
   ],
   imports: [
     BrowserModule,

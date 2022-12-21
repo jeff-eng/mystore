@@ -1,3 +1,65 @@
 <h1>Checkout</h1>
-<app-customer-info></app-customer-info>
-<app-payment-info></app-payment-info>
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <label for="email">Email: </label>
+    <input id="email" type="email"  name="email" formControlName="email" required>
+    <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+        Please enter your email address
+    </div>
+    <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" name="first-name" formControlName="firstName">
+    <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+        Please enter your first name
+    </div>
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" name="last-name" formControlName="lastName">
+    <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+        Please enter your last name
+    </div>
+
+    <div formGroupName="address">
+        <h2>Shipping Address</h2>
+      
+        <label for="street">Street: </label>
+        <input id="street" type="text" formControlName="street">
+        <div *ngIf="street?.invalid && (street?.dirty || street?.touched)">
+            Please enter your street address
+        </div>
+
+        <label for="city">City: </label>
+        <input id="city" type="text" formControlName="city">
+        <div *ngIf="city?.invalid && (city?.dirty || city?.touched)">
+            Please enter your city name
+        </div>
+
+        <label for="state">State: </label>
+        <select id="state" type="text" formControlName="state">
+            <option value="" selected disabled>Select...</option>
+            <option *ngFor="let state of states" value="{{ state }}">{{ state }}</option>
+        </select>   
+        <div *ngIf="state?.value == '' ">
+            Please select a state
+        </div>
+
+        <label for="zip">Zip Code: </label>
+        <input id="zip" type="text" formControlName="zip">
+        <div *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)">
+            Please enter your zip code
+        </div>
+    </div>
+
+    <div formGroupName="paymentInfo">
+        <h2>Payment Information</h2>
+        <label for="ccd-number">Credit Card Number: </label>
+        <input id="ccd-number" type="text" formControlName="ccdNumber">
+        <label for="expiration-date">Expiration Date: </label>
+        <input id="expiration-date" type="text" formControlName="expirationDate" placeholder="MM/YY">
+        <label for="security-code">Security Code: </label>
+        <input id="security-code" type="text" formControlName="securityCode">
+        <div *ngIf="paymentInfo?.invalid && (paymentInfo?.dirty || paymentInfo?.touched)">
+            Please enter your payment information
+        </div>
+    </div>
+      <button type="submit" [disabled]="!checkoutForm.valid">Place Order</button>
+</form>
+<h2>Order Summary</h2>
+<p>Order Total: {{ total | currency }}</p>

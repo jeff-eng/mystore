@@ -3,7 +3,7 @@
 <div *ngIf="cartItems.length > 0; else elseBlock">
     <app-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem" (removed)="onRemove(cartItem)" (quantityUpdated)="onQtyUpdate(cartItem, $event)"></app-cart-item>
     <h2>Order Summary</h2>
-    <p>Total: {{ total | currency }}</p>
+    <p>Total (with free standard shipping): {{ total | currency }}</p>
     <button routerLink="/checkout">Checkout</button>
 </div>
 <ng-template #elseBlock>
