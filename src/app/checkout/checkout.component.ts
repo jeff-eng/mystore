@@ -9,7 +9,7 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  total;
+  total: number;
   states: string[] = [
     'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
     'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
@@ -49,7 +49,7 @@ export class CheckoutComponent implements OnInit {
   onPlaceOrder(): void {
     console.log(this.checkoutForm.value);
 
-    
+
 
   }
 

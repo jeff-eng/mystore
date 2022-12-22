@@ -33,7 +33,7 @@
 
         <label for="state">State: </label>
         <select id="state" type="text" formControlName="state">
-            <option value="" selected disabled>Select...</option>
+            <option value="" selected disabled>Select State...</option>
             <option *ngFor="let state of states" value="{{ state }}">{{ state }}</option>
         </select>   
         <div *ngIf="state?.value == '' ">
