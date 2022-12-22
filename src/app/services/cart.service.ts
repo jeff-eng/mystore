@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/Product';
 import { CartItem } from '../models/CartItem';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +11,8 @@ import { CartItem } from '../models/CartItem';
 export class CartService {
   cartContents: CartItem[] = [];
   private _cartTotal: number;
+  
+  private shippingOptionsURL = 'assets/shipping-options.json';
 
   get cartTotal() {
     return this._cartTotal;
@@ -16,8 +21,9 @@ export class CartService {
   set cartTotal(sum: number) {
     this._cartTotal = sum;
   }
+  
 
-  constructor() { 
+  constructor(private http: HttpClient) { 
     this._cartTotal = 0;
   }
 
@@ -86,5 +92,5 @@ export class CartService {
 
     return this.cartContents;
   }
-
+  
 }

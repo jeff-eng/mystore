@@ -9,7 +9,7 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
-  total;
+  total: number;
 
   constructor(private cartService: CartService) { 
     this.total = this.cartService.cartTotal;
@@ -17,11 +17,6 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartContents();
-  }
-
-  onCheckout(): void {
-    // Dummy method to check out
-    alert('Checking out');
   }
   
   // Remove

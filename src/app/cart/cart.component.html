@@ -1,14 +1,11 @@
-<app-nav-header></app-nav-header>
-
 <h1>Your Cart</h1>
 
 <div *ngIf="cartItems.length > 0; else elseBlock">
     <app-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem" (removed)="onRemove(cartItem)" (quantityUpdated)="onQtyUpdate(cartItem, $event)"></app-cart-item>
+    <h2>Order Summary</h2>
+    <p>Total (with free standard shipping): {{ total | currency }}</p>
+    <button routerLink="/checkout">Checkout</button>
 </div>
 <ng-template #elseBlock>
     <p>Your cart is looking a bit lonely... Give it some friends!</p>
 </ng-template>
-
-<h2>Order Summary</h2>
-<p>Total: {{ total | currency }}</p>
-<button (click)="onCheckout()">Checkout</button>
