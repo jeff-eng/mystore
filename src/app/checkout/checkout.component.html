@@ -1,5 +1,5 @@
 <h1>Checkout</h1>
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="checkoutForm" (ngSubmit)="onPlaceOrder()">
     <label for="email">Email: </label>
     <input id="email" type="email"  name="email" formControlName="email" required>
     <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
@@ -54,7 +54,7 @@
         <label for="expiration-date">Expiration Date: </label>
         <input id="expiration-date" type="text" formControlName="expirationDate" placeholder="MM/YY">
         <label for="security-code">Security Code: </label>
-        <input id="security-code" type="text" formControlName="securityCode">
+        <input id="security-code" type="text" formControlName="securityCode" placholder="3-4 digit code">
         <div *ngIf="paymentInfo?.invalid && (paymentInfo?.dirty || paymentInfo?.touched)">
             Please enter your payment information
         </div>

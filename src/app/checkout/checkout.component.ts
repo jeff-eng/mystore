@@ -9,16 +9,15 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+  total;
   states: string[] = [
     'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
     'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
     'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
     'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
     'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
-  ]
+  ];
 
-  // Total
-  total;
 
   checkoutForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -47,8 +46,11 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
+  onPlaceOrder(): void {
     console.log(this.checkoutForm.value);
+
+    
+
   }
 
   // Getters for form inputs
