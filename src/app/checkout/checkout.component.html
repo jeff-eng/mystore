@@ -1,5 +1,5 @@
 <h1>Checkout</h1>
-<form [formGroup]="checkoutForm" (ngSubmit)="onPlaceOrder()">
+<div [formGroup]="checkoutForm">
     <label for="email">Email: </label>
     <input id="email" type="email"  name="email" formControlName="email" required>
     <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
@@ -59,7 +59,7 @@
             Please enter your payment information
         </div>
     </div>
-      <button type="submit" [disabled]="!checkoutForm.valid">Place Order</button>
-</form>
+      <button routerLink="/order-confirmation" type="button" [disabled]="!checkoutForm.valid || (total == 0)" (click)="onPlaceOrder()">Place Order</button>
+<div>
 <h2>Order Summary</h2>
 <p>Order Total: {{ total | currency }}</p>

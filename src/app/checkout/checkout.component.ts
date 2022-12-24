@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { CartService } from '../services/cart.service';
 
 @Component({
@@ -48,12 +47,12 @@ export class CheckoutComponent implements OnInit {
 
   onPlaceOrder(): void {
     console.log(this.checkoutForm.value);
-
+    console.log(this.paymentInfo);
 
 
   }
 
-  // Getters for form inputs
+  // Getters for form inputs (used for form validation)
   get email() { return this.checkoutForm.get('email'); }
   get firstName() { return this.checkoutForm.get('firstName'); }
   get lastName() { return this.checkoutForm.get('lastName'); }

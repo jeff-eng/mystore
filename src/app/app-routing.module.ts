@@ -9,11 +9,11 @@ import { ProductsComponent } from './products/products.component';
 
 
 const routes: Routes = [
-  { path: 'products', component: ProductsComponent },
-  { path: 'products/:id', component: ProductDetailComponent },
-  { path: 'cart', component: CartComponent},
-  { path: 'checkout', component: CheckoutComponent},
-  { path: 'order-confirmation', component: OrderConfirmationComponent},
+  { path: 'products', title: 'Product List', component: ProductsComponent },
+  { path: 'products/:id', title: 'Product Item', component: ProductDetailComponent },
+  { path: 'cart', title: 'Your Cart', component: CartComponent},
+  { path: 'checkout', title: 'Checkout', component: CheckoutComponent},
+  { path: 'order-confirmation', title: 'Order Confirmation', component: OrderConfirmationComponent},
   { path: '', redirectTo: '/products', pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent}
 

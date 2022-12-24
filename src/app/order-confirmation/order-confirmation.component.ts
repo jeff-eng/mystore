@@ -6,8 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-confirmation.component.css']
 })
 export class OrderConfirmationComponent implements OnInit {
+  
+  private _customerName: string = 'bozo';
 
-  constructor() { }
+  get customerName() {
+    return this._customerName;
+  }
+
+  set customerName(name: string) {
+    this._customerName = name;
+  }
+
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }

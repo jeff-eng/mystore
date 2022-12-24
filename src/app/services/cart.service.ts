@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/Product';
 import { CartItem } from '../models/CartItem';
-import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -12,8 +11,6 @@ export class CartService {
   cartContents: CartItem[] = [];
   private _cartTotal: number;
   
-  private shippingOptionsURL = 'assets/shipping-options.json';
-
   get cartTotal() {
     return this._cartTotal;
   }
@@ -22,7 +19,6 @@ export class CartService {
     this._cartTotal = sum;
   }
   
-
   constructor(private http: HttpClient) { 
     this._cartTotal = 0;
   }
