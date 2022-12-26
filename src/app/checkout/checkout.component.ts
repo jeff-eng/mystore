@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CartService } from '../services/cart.service';
+import { CartItem } from '../models/CartItem';
+import { CustomerContact } from '../models/CustomerContact';
 
 @Component({
   selector: 'app-checkout',
@@ -9,6 +11,7 @@ import { CartService } from '../services/cart.service';
 })
 export class CheckoutComponent implements OnInit {
   total: number;
+  cartItems: CartItem[];
   states: string[] = [
     'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
     'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
@@ -40,16 +43,22 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private cartService: CartService) { 
     this.total = this.cartService.cartTotal;
+    this.cartItems = this.cartService.getCartContents();
   }
   
   ngOnInit(): void {
   }
 
   onPlaceOrder(): void {
-    console.log(this.checkoutForm.value);
-    console.log(this.paymentInfo);
+    const formData = this.checkoutForm.value;
+    console.log(formData.email);
 
+    const customerContactInfo: CustomerContact = new CustomerContact(
+      (formData.firstName! + ' ' + formData.lastName!), formData.email!
+    );
 
+    // Store data in the Cart Service
+    this.cartService.customerContact = customerContactInfo;
   }
 
   // Getters for form inputs (used for form validation)

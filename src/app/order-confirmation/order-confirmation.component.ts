@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderConfirmationComponent implements OnInit {
   
-  private _customerName: string = 'bozo';
+  private _customerName: string = '';
+  private _customerEmail: string = '';
 
   get customerName() {
     return this._customerName;
@@ -17,10 +19,31 @@ export class OrderConfirmationComponent implements OnInit {
     this._customerName = name;
   }
 
-  constructor() { 
+  get customerEmail() {
+    return this._customerEmail;
+  }
+
+  set customerEmail(email: string) {
+    this._customerEmail = email;
+  }
+
+  constructor(private cartService: CartService) { 
   }
 
   ngOnInit(): void {
+    this.customerName = `${this.cartService.customerContact.customerName}`;
+    this.customerEmail = `${this.cartService.customerContact.customerEmail}`;
   }
 
+  ngOnDestroy(): void {
+    // Clear customer contact property
+    this.cartService.customerContact = {
+      customerName: '',
+      customerEmail: ''
+    }
+
+    // Clear cart
+    this.cartService.emptyCartContents();
+
+  }
 }
