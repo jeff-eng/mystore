@@ -44,6 +44,5 @@ export class OrderConfirmationComponent implements OnInit {
 
     // Clear cart
     this.cartService.emptyCartContents();
-
   }
 }
