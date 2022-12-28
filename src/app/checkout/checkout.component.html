@@ -1,18 +1,18 @@
 <h1>Checkout</h1>
-<form [formGroup]="checkoutForm" (ngSubmit)="onPlaceOrder()">
+<div [formGroup]="checkoutForm">
     <label for="email">Email: </label>
     <input id="email" type="email"  name="email" formControlName="email" required>
-    <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+    <div *ngIf="email?.invalid && email?.dirty">
         Please enter your email address
     </div>
     <label for="first-name">First Name: </label>
     <input id="first-name" type="text" name="first-name" formControlName="firstName">
-    <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+    <div *ngIf="firstName?.invalid && firstName?.dirty">
         Please enter your first name
     </div>
     <label for="last-name">Last Name: </label>
     <input id="last-name" type="text" name="last-name" formControlName="lastName">
-    <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+    <div *ngIf="lastName?.invalid && lastName?.dirty">
         Please enter your last name
     </div>
 
@@ -21,13 +21,13 @@
       
         <label for="street">Street: </label>
         <input id="street" type="text" formControlName="street">
-        <div *ngIf="street?.invalid && (street?.dirty || street?.touched)">
+        <div *ngIf="street?.invalid && street?.dirty">
             Please enter your street address
         </div>
 
         <label for="city">City: </label>
         <input id="city" type="text" formControlName="city">
-        <div *ngIf="city?.invalid && (city?.dirty || city?.touched)">
+        <div *ngIf="city?.invalid && city?.dirty">
             Please enter your city name
         </div>
 
@@ -42,7 +42,7 @@
 
         <label for="zip">Zip Code: </label>
         <input id="zip" type="text" formControlName="zip">
-        <div *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)">
+        <div *ngIf="zip?.invalid && zip?.dirty">
             Please enter your zip code
         </div>
     </div>
@@ -55,11 +55,23 @@
         <input id="expiration-date" type="text" formControlName="expirationDate" placeholder="MM/YY">
         <label for="security-code">Security Code: </label>
         <input id="security-code" type="text" formControlName="securityCode" placholder="3-4 digit code">
-        <div *ngIf="paymentInfo?.invalid && (paymentInfo?.dirty || paymentInfo?.touched)">
+        <div *ngIf="paymentInfo?.invalid && paymentInfo?.dirty">
             Please enter your payment information
         </div>
     </div>
-      <button type="submit" [disabled]="!checkoutForm.valid">Place Order</button>
-</form>
+      <button routerLink="/order-confirmation" type="button" [disabled]="!checkoutForm.valid || (total == 0)" (click)="onPlaceOrder()">Place Order</button>
+<div>
 <h2>Order Summary</h2>
+<table>
+    <tr>
+        <th>Quantity</th>
+        <th>Product Item</th>
+        <th>Unit Price</th>
+    </tr>
+        <tr *ngFor="let cartItem of cartItems">
+            <td>{{ cartItem.quantity }}</td>
+            <td>{{ cartItem.product?.name }}</td>
+            <td>{{ cartItem.product?.price | currency }}</td>
+        </tr>
+</table>
 <p>Order Total: {{ total | currency }}</p>
