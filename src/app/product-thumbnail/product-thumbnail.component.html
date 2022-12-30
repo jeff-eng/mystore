@@ -1,8 +1,10 @@
 <!-- Product Image with link to product detail page -->
-<a [routerLink]="['/products', product.id]"><img src="{{ product.url }}" alt=""></a>
+<a [routerLink]="['/products', product.id]"><img class="sm: min-w-5 lg: min-w-sm drop-shadow-md" src="{{ product.url }}" alt=""></a>
 
-<!-- Product Name with link to product detail page -->
-<p><a [routerLink]="['/products', product.id]">{{ product.name }}</a></p>
 
-<!-- Product Price -->
-<p>${{ product.price }}</p>
+<div class="flex justify-between py-5">
+    <!-- Product Name with link to product detail page -->
+    <h2 class="font-bold"><a [routerLink]="['/products', product.id]">{{ product.name }}</a></h2>   
+    <!-- Product Price -->
+    <span>${{ product.price }}</span>
+</div>
