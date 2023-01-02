@@ -1,18 +1,43 @@
-<!-- Product image -->
-<img src="{{ product?.url }}" alt="{{ product?.name }} image">
-<!-- Product Name -->
-<p>{{ product?.name }}</p>
-<!-- Product Price -->
-<p>${{ product?.price }}</p>
-<!-- Product Description -->
-<p>{{ product?.description }}</p>
+<main class="flex flex-wrap">
+        <section class="grow shrink mx-10 md:shrink my-10 ">
+            <!-- Product image -->
+            <img class="mx-auto drop-shadow-md rounded sm:max-w-xl grow lg:max-w-2xl" src="{{ product?.url }}" alt="{{ product?.name }} image">
+        </section>
+        <!-- class="sm:mx-auto my-10 ml-5 mr-auto" -->
+        <section class="grow ml-10 mr-10 my-10">
+            <!-- Product Name -->
+            <h1 class="text-2xl font-bold">{{ product?.name }}</h1>
+            <!-- Product Price -->
+            <p>${{ product?.price }}</p>
+            
+            <div class="grow">
+                <p>Quantity selected: {{ selectedQty }}</p>
+            
+                <!-- Quantity selector -->
+                <form class="py-10" (ngSubmit)="addToCart()">
+                    <select class="form-select appearance-none
+                    block
+                    w-full
+                    p-3
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    my-2
+                    focus:text-gray-700 focus:bg-white focus:outline-none" 
+                    [(ngModel)]="selectedQty" 
+                    name="quantity">
+                        <option *ngFor="let option of ngOptions" [selected]="option === ngDefaultQty" [ngValue]="option">{{ option }}</option>
+                    </select>
+                    <button class="block w-full p-3 bg-teal-400 text-white font-medium text-xs rounded shadow-md hover:bg-teal-500" type="submit">Add To Cart</button>
+                </form>
+            </div>
+                <!-- Product Description -->
+                <p>{{ product?.description }}</p>
+        </section>
 
-<p>Quantity selected: {{ selectedQty }}</p>
-
-<!-- Quantity selector -->
-<form (ngSubmit)="addToCart()">
-    <select [(ngModel)]="selectedQty" name="quantity" id="">
-        <option *ngFor="let option of ngOptions" [selected]="option === ngDefaultQty" [ngValue]="option">{{ option }}</option>
-    </select>
-    <input type="submit" value="Add To Cart">
-</form>
+</main>
