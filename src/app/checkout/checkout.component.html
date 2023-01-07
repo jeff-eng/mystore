@@ -62,12 +62,14 @@
       <button routerLink="/order-confirmation" type="button" [disabled]="!checkoutForm.valid || (total == 0)" (click)="onPlaceOrder()">Place Order</button>
 <div>
 <h2>Order Summary</h2>
-<table>
-    <tr>
-        <th>Quantity</th>
-        <th>Product Item</th>
-        <th>Unit Price</th>
-    </tr>
+<table class="min-w-full text-center">
+    <thead>
+        <tr>
+            <th class="text-sm font-medium text-gray-900 px-6 py-4">Quantity</th>
+            <th class="text-sm font-medium text-gray-900 px-6 py-4">Product Item</th>
+            <th class="text-sm font-medium text-gray-900 px-6 py-4">Unit Price</th>
+        </tr>
+    </thead>
         <tr *ngFor="let cartItem of cartItems">
             <td>{{ cartItem.quantity }}</td>
             <td>{{ cartItem.product?.name }}</td>
