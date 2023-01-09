@@ -1,7 +1,7 @@
 <div class="bg-gradient-to-r from-amber-100 to-teal-400">
     <nav class="pl-3 pb-3 pt-3">
         <label for="sort-select">Sort by </label>
-        <select class="form-select rounded-full" [(ngModel)]="sortType" id="sort-select" (ngModelChange)="sortBy($event)">
+        <select class="form-select rounded-full max-w-fit" [(ngModel)]="sortType" id="sort-select" (ngModelChange)="sortBy($event)">
             <option value="high-low" [defaultSelected]="">Price: $$ - $</option>
             <option value="low-high">Price: $ - $$</option>
         </select>
