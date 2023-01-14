@@ -2,7 +2,7 @@
 <a [routerLink]="['/products', product.id]"><img class="min-w-5 drop-shadow-md rounded lg:min-w-sm " src="{{ product.url }}" alt=""></a>
 
 
-<div class="flex justify-between py-5">
+<div class="flex-none min-[550px]:flex justify-between py-5">
     <!-- Product Name with link to product detail page -->
     <h2 class="font-bold"><a [routerLink]="['/products', product.id]">{{ product.name }}</a></h2>   
     <!-- Product Price -->
