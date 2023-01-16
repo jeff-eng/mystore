@@ -1,14 +1,19 @@
-<a [routerLink]="['/products', cartItem.product?.id]">
-    <img class="max-h-60 drop-shadow-md rounded hover:" src="{{ cartItem.product?.url }}" alt="{{ cartItem.product?.name }} image thumbnail">
-</a>
-<a [routerLink]="['/products', cartItem.product?.id]">
-    <h3>{{ cartItem.product?.name }}</h3>
-</a>
-<p>{{ cartItem.product?.price | currency }}</p>
-<label for="cartitem-qty">Qty: </label>
-<select class="form-select max-w-xs rounded inline-block" #qty name="cartitem-qty" (change)="qtyUpdated(qty.value)">
-    <option *ngFor="let option of ngOptions" [selected]="option === cartItem.quantity" [ngValue]="option">{{ option }}</option>
-</select>
-<button class="" (click)="removed.emit(cartItem)">Remove</button>
-<br>
+<div class="flex flex-row mb-10">
+    <a class="basis-1/2"[routerLink]="['/products', cartItem.product?.id]">
+        <img class="max-h-40 drop-shadow-md rounded" src="{{ cartItem.product?.url }}" alt="{{ cartItem.product?.name }} image thumbnail">
+    </a>
+    <div class="basis-1/2">
+        <a class="" [routerLink]="['/products', cartItem.product?.id]">
+            <h3 class="font-bold">{{ cartItem.product?.name }}</h3>
+        </a>
+        <p>{{ cartItem.product?.price | currency }}</p>
+        <label for="cartitem-qty">Qty: </label>
+        <select class="form-select max-w-xs rounded inline-block" #qty name="cartitem-qty" (change)="qtyUpdated(qty.value)">
+            <option *ngFor="let option of ngOptions" [selected]="option === cartItem.quantity" [ngValue]="option">{{ option }}</option>
+        </select>
+        <button class="hover:text-teal-500" (click)="removed.emit(cartItem)">Remove</button>
+        <br>
+    </div>
+</div>
+
 
