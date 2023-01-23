@@ -25,12 +25,10 @@ export class CheckoutComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     firstName: new FormControl('', [Validators.required, Validators.minLength(1)]),
     lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    address: new FormGroup({
-      street: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      city: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      state: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      zip: new FormControl('', [Validators.required, Validators.pattern(/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/)])
-    }),
+    street: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    city: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    state: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    zip: new FormControl('', [Validators.required, Validators.pattern(/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/)]),
     paymentInfo: new FormGroup({
       ccdNumber: new FormControl('', [Validators.required, Validators.pattern(
         /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
