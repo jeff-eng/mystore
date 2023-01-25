@@ -1,4 +1,7 @@
-<h1 class="text-2xl mx-5 mr-auto py-2 font-bold">Your Cart</h1>
+<header class="flex justify-between">
+    <h1 class="text-2xl mx-5 mr-auto py-2 font-bold">Your Cart</h1>
+    <ngb-toast class="m-2" *ngIf="show" [autohide]="false" (hidden)="show=false;">{{ toastMessage }}</ngb-toast>
+</header>
 
 <div class="flex flex-wrap mx-auto" *ngIf="cartItems.length > 0; else elseBlock">
     <section class="mx-auto">
@@ -11,6 +14,7 @@
         <button class="my-2 p-2 bg-teal-400 font-medium text-white rounded shadow-md hover:bg-teal-500" routerLink="/checkout">Checkout</button>
     </aside>
 </div>
+
 <ng-template #elseBlock>
     <h2 class="mt-10 px-2 text-center">Your cart is looking a bit lonely... Give it some friends!</h2>
 </ng-template>

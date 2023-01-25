@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../models/CartItem';
 import { CartService } from '../services/cart.service';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgIf } from '@angular/common';
+import { trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-cart',
@@ -10,6 +13,9 @@ import { CartService } from '../services/cart.service';
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   total: number;
+  toastMessage: string = '';
+  // Boolean for hide/show toast notification
+  show = false;
 
   constructor(private cartService: CartService) { 
     this.total = this.cartService.cartTotal;
@@ -17,6 +23,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartContents();
+    
   }
   
   // Remove
@@ -25,13 +32,20 @@ export class CartComponent implements OnInit {
     const returnedArray = this.cartService.removeFromCartContents(item);
     this.cartItems = returnedArray;
     this.total = this.cartService.cartTotal;
-    window.alert(`Removed item ${item.product?.name} from cart!`);
-    
+
+    this.triggerToast(item, 'removed from your cart');
   }
 
   onQtyUpdate(item: CartItem, qty: number) {
     this.cartItems = this.cartService.updateCartContents(item, qty);
     this.total = this.cartService.cartTotal;
+
+    this.triggerToast(item, 'quantity updated');
   }
 
+  private triggerToast(item: CartItem, message: string): void {
+    this.show = true;
+    this.toastMessage = `${item.product?.name} ${message}.`;
+    setTimeout(() => (this.show = false), 3000);
+  }
 }
