@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../models/CartItem';
 import { CartService } from '../services/cart.service';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgIf } from '@angular/common';
-import { trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-cart',

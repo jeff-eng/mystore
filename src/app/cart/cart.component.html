@@ -3,7 +3,7 @@
     <ngb-toast class="m-2" *ngIf="show" [autohide]="false" (hidden)="show=false;">{{ toastMessage }}</ngb-toast>
 </header>
 
-<div class="flex flex-wrap mx-auto" *ngIf="cartItems.length > 0; else elseBlock">
+<div class="flex flex-wrap mx-auto my-10" *ngIf="cartItems.length > 0; else elseBlock">
     <section class="mx-auto">
         <app-cart-item class="" *ngFor="let cartItem of cartItems" [cartItem]="cartItem" (removed)="onRemove(cartItem)" (quantityUpdated)="onQtyUpdate(cartItem, $event)"></app-cart-item>
     </section>
