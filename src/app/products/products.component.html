@@ -1,1 +1,14 @@
-<p>products works!</p>
+<div class="bg-gradient-to-r from-amber-100 to-teal-400">
+    <nav class="pl-3 pb-3 pt-3">
+        <label for="sort-select">Sort by </label>
+        <select class="form-select rounded-full max-w-fit" [(ngModel)]="sortType" id="sort-select" (ngModelChange)="sortBy($event)">
+            <option value="high-low" [defaultSelected]="">Price: $$ - $</option>
+            <option value="low-high">Price: $ - $$</option>
+        </select>
+    </nav>
+</div>
+
+<main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-10 bg-slate-50">
+    <app-product-thumbnail class="m-auto p-5 xl: max-w-xl" *ngFor="let product of sortedProducts" [product]="product"></app-product-thumbnail>
+</main>
+

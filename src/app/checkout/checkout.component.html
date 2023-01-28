@@ -1,0 +1,95 @@
+<main class="mx-auto lg:max-w-3xl">
+    <h1 class="font-bold text-2xl ml-5">Checkout</h1>
+    <div class="mx-5 pt-5" [formGroup]="checkoutForm">
+        <label class="form-label" for="email">Email: </label>
+        <input class="form-control" id="email" type="email" name="email" formControlName="email" required>
+        <div class="bg-red-100 rounded-lg py-1 px-2 my-1 text-base text-red-700" role="alert" *ngIf="email?.invalid && email?.dirty">
+            Please enter a valid email address
+        </div>
+        <label for="first-name">First Name: </label>
+        <input class="form-control" id="first-name" type="text" name="first-name" formControlName="firstName">
+        <div class="bg-red-100 rounded-lg py-1 px-2 my-1 text-base text-red-700" *ngIf="firstName?.invalid && firstName?.dirty">
+            Please enter your first name
+        </div>
+        <label for="last-name">Last Name: </label>
+        <input class="form-control" id="last-name" type="text" name="last-name" formControlName="lastName">
+        <div class="bg-red-100 rounded-lg py-1 px-2 my-1 text-base text-red-700" *ngIf="lastName?.invalid && lastName?.dirty">
+            Please enter your last name
+        </div>
+    
+        <h2 class="font-bold pt-5 mb-2">Shipping Address</h2>
+        <label for="street">Street: </label>
+        <input class="form-control" id="street" type="text" formControlName="street">
+        <div class="bg-red-100 rounded-lg py-1 px-2 my-1 text-base text-red-700" *ngIf="street?.invalid && street?.dirty">
+            Please enter your street address
+        </div>
+    
+        <div class="min-[430px]:grid grid-cols-2 gap-4">
+            <div>            
+                <label for="city">City: </label>
+                <input class="form-control" id="city" type="text" formControlName="city">
+                <div class="bg-red-100 rounded-lg py-1 px-2 my-1 text-base text-red-700" *ngIf="city?.invalid && city?.dirty">
+                    Please enter your city name
+                </div>
+            </div>
+            <div>
+                <label for="state">State: </label>
+                <select class="form-select" id="state" type="text" formControlName="state">
+                    <option value="" selected disabled>Select State...</option>
+                    <option *ngFor="let state of states" value="{{ state }}">{{ state }}</option>
+                </select>   
+                <div class="bg-red-100 rounded-lg py-1 px-2 my-1 text-base text-red-700" *ngIf="(state?.value == 'Select State...') && (state?.touched)">
+                    Please select a state
+                </div>
+            </div>
+        </div>
+    
+        <label for="zip">Zip Code: </label>
+        <input class="form-control" id="zip" type="text" formControlName="zip">
+        <div class="bg-red-100 rounded-lg py-1 px-2 my-1 text-base text-red-700" *ngIf="zip?.invalid && zip?.dirty">
+            Please enter your zip code
+        </div>
+    
+        <div formGroupName="paymentInfo">
+            <h2 class="font-bold pt-5 mb-2">Payment Information</h2>
+            <label for="ccd-number">Credit Card Number: </label>
+            <input class="form-control" id="ccd-number" type="text" formControlName="ccdNumber">
+            <div class="min-[430px]:grid grid-cols-2 gap-4">
+                <div>
+                    <label for="expiration-date">Expiration Date: </label>
+                    <input class="form-control" id="expiration-date" type="text" formControlName="expirationDate" placeholder="MM/YY">
+                </div>
+                <div>
+                    <label for="security-code">Security Code: </label>
+                    <input class="form-control" id="security-code" type="text" formControlName="securityCode" placeholder="3-4 digit code">
+                </div>
+            </div>
+            <div class="bg-red-100 rounded-lg py-1 px-2 my-1 text-base text-red-700" *ngIf="paymentInfo?.invalid && paymentInfo?.dirty">
+                Please enter your payment information
+            </div>
+        </div>
+          <button class="my-2 p-2 bg-teal-400 font-medium text-white rounded shadow-md hover:bg-teal-500" routerLink="/order-confirmation" type="button" [disabled]="!checkoutForm.valid || (total == 0)" (click)="onPlaceOrder()">Place Order</button>
+    </div>
+
+    <section class="mx-5 pt-5">
+        <h2 class="font-bold">Order Summary</h2>
+        <table class="table-auto min-w-full text-center">
+            <thead class="bg-white border-b">
+                <tr>
+                    <th class="text-sm font-medium text-gray-900 px-6 py-4">Product Item</th>
+                    <th class="text-sm font-medium text-gray-900 px-6 py-4">Quantity</th>
+                    <th class="text-sm font-medium text-gray-900 px-6 py-4">Unit Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cartItem of cartItems">
+                    <td>{{ cartItem.product?.name }}</td>
+                    <td>{{ cartItem.quantity }}</td>
+                    <td>{{ cartItem.product?.price | currency }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 class="my-5 pt-2 font-bold">Order Total: {{ total | currency }}</h3>
+    </section>
+
+</main>
