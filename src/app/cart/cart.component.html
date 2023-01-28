@@ -1,11 +1,20 @@
-<h1>Your Cart</h1>
+<header class="flex justify-between">
+    <h1 class="text-2xl mx-5 mr-auto py-2 font-bold">Your Cart</h1>
+    <ngb-toast class="m-2" *ngIf="show" [autohide]="false" (hidden)="show=false;">{{ toastMessage }}</ngb-toast>
+</header>
 
-<div *ngIf="cartItems.length > 0; else elseBlock">
-    <app-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem" (removed)="onRemove(cartItem)" (quantityUpdated)="onQtyUpdate(cartItem, $event)"></app-cart-item>
-    <h2>Order Summary</h2>
-    <p>Total (with free standard shipping): {{ total | currency }}</p>
-    <button routerLink="/checkout">Checkout</button>
+<div class="flex flex-wrap mx-auto my-10" *ngIf="cartItems.length > 0; else elseBlock">
+    <section class="mx-auto">
+        <app-cart-item class="" *ngFor="let cartItem of cartItems" [cartItem]="cartItem" (removed)="onRemove(cartItem)" (quantityUpdated)="onQtyUpdate(cartItem, $event)"></app-cart-item>
+    </section>
+    <aside class="max-w-fit mx-auto">
+        <h2 class="text-xl font-bold">Order Summary</h2>
+        <p class="min-w-max my-2">Total (with free standard shipping): <span class="min-w-full font-bold">{{ total | currency }}</span></p>
+        <hr>
+        <button class="my-2 p-2 bg-teal-400 font-medium text-white rounded shadow-md hover:bg-teal-500" routerLink="/checkout">Checkout</button>
+    </aside>
 </div>
+
 <ng-template #elseBlock>
-    <p>Your cart is looking a bit lonely... Give it some friends!</p>
+    <h2 class="mt-10 px-2 text-center">Your cart is looking a bit lonely... Give it some friends!</h2>
 </ng-template>

@@ -4,6 +4,7 @@ import { throwError } from 'rxjs';
 import { Product } from '../models/Product';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
+import {  NgbModal  } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,7 +20,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(private productService: ProductService, 
               private cartService: CartService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private modalService: NgbModal) {
                 this.selectedQty = 1;
               }
 
@@ -39,6 +41,11 @@ export class ProductDetailComponent implements OnInit {
   
   addToCart(): void {
     this.cartService.addToCartContents(this.product, this.selectedQty);
+  }
+
+  // Add to Cart button calls this method to present modal
+  open(content: any): void {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
 }

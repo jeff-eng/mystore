@@ -1,18 +1,58 @@
-<!-- Product image -->
-<img src="{{ product?.url }}" alt="{{ product?.name }} image">
-<!-- Product Name -->
-<p>{{ product?.name }}</p>
-<!-- Product Price -->
-<p>${{ product?.price }}</p>
-<!-- Product Description -->
-<p>{{ product?.description }}</p>
+<main class="flex flex-wrap">
+    <section class="grow shrink mx-10 md:shrink my-10">
+        <!-- Product image -->
+        <img class="mx-auto drop-shadow-md rounded sm:max-w-lg grow lg:max-w-xl" src="{{ product?.url }}" alt="{{ product?.name }} image">
+    </section>
+    <section class="grow ml-10 mr-10 my-10 divide-y">
+        <!-- Product Name -->
+        <h1 class="text-2xl font-bold">{{ product?.name }}</h1>
+        <!-- Product Price -->
+        <p>{{ product?.price | currency }}</p>
+        <div class="grow">
+            <!-- Quantity selector -->
+            <form class="py-10" (ngSubmit)="addToCart()">
+                <select class="form-select appearance-none
+                block
+                w-full
+                p-3
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding bg-no-repeat
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                my-2
+                focus:text-gray-700 focus:bg-white focus:outline-none" 
+                [(ngModel)]="selectedQty" 
+                name="quantity">
+                    <option *ngFor="let option of ngOptions" [selected]="option === ngDefaultQty" [ngValue]="option">{{ option }}</option>
+                </select>
+                <button class="block w-full p-3 bg-teal-400 text-white font-medium text-sm rounded shadow-md hover:bg-teal-500" type="submit" (click)="open(content)">Add To Cart</button>
+            </form>
+        </div>
+            <!-- Product Description -->
+            <p>{{ product?.description }}</p>
+    </section>
+            
+</main>
 
-<p>Quantity selected: {{ selectedQty }}</p>
-
-<!-- Quantity selector -->
-<form (ngSubmit)="addToCart()">
-    <select [(ngModel)]="selectedQty" name="quantity" id="">
-        <option *ngFor="let option of ngOptions" [selected]="option === ngDefaultQty" [ngValue]="option">{{ option }}</option>
-    </select>
-    <input type="submit" value="Add To Cart">
-</form>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Nice! You added an item to your cart!</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body flex flex-wrap">
+        <img class="max-h-32 rounded drop-shadow-sm" src="{{ product?.url }}" alt="Modal product image of {{ product?.name }}">
+        <aside class="ml-10">
+            <h3>{{ product?.name }}</h3>
+            <p>{{ product?.price | currency }}</p>
+            <p>Qty: {{ selectedQty }}</p>
+        </aside>
+	</div>
+	<div class="modal-footer max-w-fit">
+		<button type="button" class="inline-block min-w- px-6 border-2 font-medium text-sm border-teal-400 rounded hover:bg-teal-400" (click)="modal.close()">Continue Shopping</button>
+        <button type="button" class="inline-block px-6 border-2 font-medium text-sm border-teal-400 rounded hover:bg-teal-400" (click)="modal.close()" routerLink="/cart">View Cart</button>
+	</div>
+</ng-template>
