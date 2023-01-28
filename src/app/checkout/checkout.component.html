@@ -2,7 +2,7 @@
     <h1 class="font-bold text-2xl ml-5">Checkout</h1>
     <div class="mx-5 pt-5" [formGroup]="checkoutForm">
         <label class="form-label" for="email">Email: </label>
-        <input class="form-control" id="email" type="email"  name="email" formControlName="email" required>
+        <input class="form-control" id="email" type="email" name="email" formControlName="email" required>
         <div class="bg-red-100 rounded-lg py-1 px-2 my-1 text-base text-red-700" role="alert" *ngIf="email?.invalid && email?.dirty">
             Please enter a valid email address
         </div>

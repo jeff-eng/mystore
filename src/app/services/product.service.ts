@@ -12,8 +12,6 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
-    // Assert return value from get method is array of Products; 
-    // this automatically maps returned response to an array of Products
     return this.http.get<Product[]>(this.productDataURL);
   }
 }

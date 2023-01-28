@@ -4,7 +4,7 @@ import { throwError } from 'rxjs';
 import { Product } from '../models/Product';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
-import {  ModalDismissReasons, NgbModal  } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbModal  } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product-detail',

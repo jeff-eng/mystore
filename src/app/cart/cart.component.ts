@@ -23,7 +23,6 @@ export class CartComponent implements OnInit {
     
   }
   
-  // Remove
   onRemove(item: CartItem): void {
     // Remove item from the Cart Service and update cartItems property with returned array
     const returnedArray = this.cartService.removeFromCartContents(item);
